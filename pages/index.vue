@@ -2,28 +2,44 @@
   <div>
     <div v-if="data">
       <h1>Random Dog</h1>
-      <img :src="data" alt="Random Dog" />
-      {{ data }}
+      <img
+        v-for="(dog, index) in data"
+        :key="index"
+        :src="dog"
+        alt="Random Dog"
+        loading="lazy"
+      />
     </div>
-    <div v-else>
+
+    <div v-if="error">Error fetching dog images: {{ error.message }}</div>
+
+    <div v-if="isLoading">
       <p>Loading...</p>
     </div>
-    <button @click="refetch">Fetch New Dog</button>
+    <button @click="fetchDogs">Fetch New Dog</button>
   </div>
 </template>
 
 <script setup lang="ts">
-// import { NuxtImg } from '#build/components';
 import useRandomDog from '@/composables/useRandomDog';
 
-const { data, isLoading, refetch } = useRandomDog();
+const { data, isLoading, error, refetch } = useRandomDog(5);
+
+const fetchDogs = () => {
+  refetch();
+};
 </script>
 
 <style scoped>
+.dog-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 img {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 5px;
   width: 200px;
+  height: auto;
+  border-radius: 8px;
 }
 </style>

@@ -2,12 +2,31 @@
 import { useQuery } from '@tanstack/vue-query';
 import axios from 'axios';
 
-export default () => {
+// first basic function to fetch one dog
+// export default () => {
+//   return useQuery({
+//     queryKey: ['randomDog'],
+//     queryFn: async () => {
+//       const res = await axios.get('https://dog.ceo/api/breeds/image/random');
+//       return res.data.message;
+//     },
+//   });
+// };
+
+export default (count: number = 3) => {
   return useQuery({
-    queryKey: ['randomDog'],
+    queryKey: ['randomDogs', count],
     queryFn: async () => {
-      const res = await axios.get('https://dog.ceo/api/breeds/image/random');
+      const res = await axios.get(
+        `https://dog.ceo/api/breeds/image/random/${count}`
+      );
       return res.data.message;
+    },
+    enabled: false, // without this, the fetch would work automatically
+
+    // error handling
+    onError: (error) => {
+      console.error('Error fetching dog images:', error);
     },
   });
 };

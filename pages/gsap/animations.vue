@@ -11,6 +11,7 @@
         <div class="shapes">
             <div ref="circle2" class="circle2"></div>
         </div>
+     
     </div>
 </template>
 

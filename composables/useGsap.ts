@@ -22,6 +22,7 @@ export default function useGsap() {
       props2: { opacity: 1, x: 200, duration: 5, repeat: -1 },
       animate: "fromTo",
     },
+    
   ];
 
   // Register theseffects

@@ -38,21 +38,34 @@ const balls = [
     },
 ];
 
-
 const animateBalls = () => {
     balls.forEach((ball) => {
-        gsap.to(".circle2", {
+
+        let tl = gsap.timeline({
             scrollTrigger: {
                 trigger: ".circle2",
-                start: "top 40%",
-                markers: true,
-                toggleActions: "restart pause reverse none"
+                start: "20px 80%",
+                scrub: 1,
+                // markers: true,
+                toggleActions: "restart pause reverse pause"
             },
+        });
+        tl.to(".circle2", {
             // opacity: 0,
             y: 50,
             x: 900,
+            rotation: 360,
             duration: 4
-        });
+        })
+            .to(".circle2", {
+                backgroundColor: "purple",
+                duration: 3,
+            })
+            .to(".circle2", {
+                end: "20px 60%",
+                x: 0,
+                duration: 3,
+            });
 
     });
 };

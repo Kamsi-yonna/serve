@@ -44,10 +44,12 @@ const animateBalls = () => {
         let tl = gsap.timeline({
             scrollTrigger: {
                 trigger: ".circle2",
-                start: "20px 80%",
+                start: "top 80%",
                 scrub: 1,
-                // markers: true,
-                toggleActions: "restart pause reverse pause"
+                // ease: "in",
+                pin: true,
+                markers: true,
+                toggleActions: "play pause none reset"
             },
         });
         tl.to(".circle2", {
@@ -57,15 +59,17 @@ const animateBalls = () => {
             rotation: 360,
             duration: 4
         })
-            .to(".circle2", {
-                backgroundColor: "purple",
-                duration: 3,
-            })
-            .to(".circle2", {
-                end: "20px 60%",
-                x: 0,
-                duration: 3,
-            });
+        //     .to(".circle2", {
+        //         backgroundColor: "green",
+        //         // duration: 3,
+        //     })
+        //     .to(".circle2", {
+        //         // end: "20px 60%",
+        //         // opacity: 0,
+        //         // duration: 3,
+        //         // y: 0,
+        //         // x: 0,
+        //     });
 
     });
 };
